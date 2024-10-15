@@ -1,0 +1,18 @@
+.msg__erro{
+  font-size: 12px;
+  margin-left: 5px;
+  color: red;
+  margin-top: -25px;
+  margin-bottom: 20px;
+}
+
+.msg__erro p{
+  margin-top: 2rem;
+}
+
+.custom-btn{
+  margin-top: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
