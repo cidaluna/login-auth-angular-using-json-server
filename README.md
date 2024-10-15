@@ -30,3 +30,23 @@ O fluxo da aplicação inicia na página de boas vindas Home, permitindo o usuá
 
 Aplicação disponível em: http://localhost:4200
 
+## Sobre CORS:
+
+É comum a aplicação Front-end rodar em um determinado domínio URL, e a aplicação Back-end rodar em outro domínio diferente. E no momento de integração das aplicações, pode ocorrer que a requisição do Front-end ao Back-end seja bloqueada pelo navegador, pela política de segurança CORS (Cross-Origin Resource Sharing, ou Compartilhamento de Recursos entre Origens Diferentes). Esse bloqueio CORS ocorre apenas no navegador, pois o navegador faz uma requisição antecipada, conhecida como Preflight, essa mesma requisição Preflight não ocorre no Postman ou outros ambientes, por isso precisa ser bem configurada no Back-end.
+
+Confira se o Back-end possui configurado as políticas de CORS, quais são os cabeçalhos aceitos 'Access-Control-Allow-Headers: content-type, x-custom-teste', quais são os verbos HTTP aceitos exemplo 'Access-Control-Allow-Methods: PUT, PATCH', inclusive peça para ser adicionado a origem do Front-end com o 'Access-Control-Allow-Origin: http://endereco.do.seu.frontend:4200' e conheça as regras de segurança, para que as requisições consigam consumir os recursos autorizados.
+
+Para resolver esse problema no Front-end, em tempo de desenvolvimento local, foi criado o arquivo proxy.conf.json que contem o endereço padrão da API JSON Server configurado no target http://localhost:3000. 
+
+### Problema sem o proxy
+
+Se você fizer uma requisição diretamente por exemplo para http://localhost:3000/users a partir do frontend em http://localhost:4200, isso vai gerar um problema de CORS. O navegador bloqueia a requisição porque está sendo feita para um domínio diferente.
+
+### Solução com o proxy
+
+Com o proxy configurado, você faz uma chamada para http://localhost:4200/api/users, e o Angular CLI redireciona isso internamente para http://localhost:3000/users, resolvendo o problema de CORS sem precisar configurar cabeçalhos especiais no Back-end, por enquanto.
+
+### Proxy somente em ambiente de Desenvolvimento
+
+O proxy é ideal para desenvolvimento, mas em produção, as chamadas devem ser feitas diretamente para o backend real. Usar um proxy em produção pode adicionar latência e complexidade desnecessária.
+
