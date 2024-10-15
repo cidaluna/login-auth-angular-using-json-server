@@ -16,19 +16,25 @@ O fluxo da aplicação inicia na página de boas vindas Home, permitindo o usuá
   cd login-auth-angular-using-json-server
 ```
 
-3. **No diretório do projeto execute o comando**
+3. **Execute o comando JSON Server para acesso a API Backend provisório**
+```bash
+  json-server --watch db.json
+```
+
+4. **Abra outro terminal, dentro do diretório do projeto e execute o comando**
   ```bash 
     npm install
   ```
 
-4. **Execute a aplicação**
+5. **Execute a aplicação Angular**
   ```bash 
     ng serve
   ```
 
-5. **Navegue na URL que o comando anterior apresentou**
+6. **Navegue na URL que o comando anterior apresentou**
 
 Aplicação disponível em: http://localhost:4200
+
 
 ## Sobre CORS:
 
