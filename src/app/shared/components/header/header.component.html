@@ -1,1 +1,30 @@
-<p>header works!</p>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+    <div class="container header-container">
+      <!-- Logo no canto superior esquerdo -->
+      <a class="navbar-brand" routerLink="/">
+        <span>App Example<strong> Login Auth</strong></span>
+      </a>
+
+      <!-- Botão para dispositivos móveis -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links no canto superior direito -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

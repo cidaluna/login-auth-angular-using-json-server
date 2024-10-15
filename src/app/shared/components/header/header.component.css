@@ -1,0 +1,24 @@
+a{
+  cursor: pointer;
+}
+
+header {
+  width: 100%;
+  margin: 0 auto; /* Centraliza horizontalmente */
+  margin-bottom: 1.6rem;
+}
+
+.header-container {
+  width: 100%; /* Certifica que o conteúdo ocupe toda a largura do header */
+}
+
+header .navbar-brand {
+  font-weight: bold;
+  color: #fff;
+}
+
+header .nav-link {
+  margin-left: 15px;
+  font-size: 16px;
+  color: #fff;
+}
