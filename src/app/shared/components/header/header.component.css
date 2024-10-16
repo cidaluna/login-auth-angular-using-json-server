@@ -2,6 +2,12 @@ a{
   cursor: pointer;
 }
 
+.active{
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+}
+
 header {
   width: 100%;
   margin: 0 auto; /* Centraliza horizontalmente */
@@ -10,6 +16,10 @@ header {
 
 .header-container {
   width: 100%; /* Certifica que o conteúdo ocupe toda a largura do header */
+}
+
+.navbar{
+  background: linear-gradient(45deg,#0855A3, #142142);
 }
 
 header .navbar-brand {
@@ -21,4 +31,36 @@ header .nav-link {
   margin-left: 15px;
   font-size: 16px;
   color: #fff;
+}
+
+
+
+@media(max-width: 450px){
+  .navbar-toggler{
+    color: #fff !important;
+    background-color: #e8e8e8;
+  }
+
+  .active{
+    border: none;
+    border-radius: none !important;
+    border-bottom: 1px solid #fff;
+    max-width: fit-content;
+  }
+
+}
+
+@media(min-width: 451px) and (max-width: 990px){
+  .navbar-toggler{
+    color: #fff !important;
+    background-color: #e8e8e8;
+  }
+
+  .active{
+    border: none;
+    border-radius: none !important;
+    border-bottom: 1px solid #fff;
+    max-width: fit-content;
+  }
+
 }
