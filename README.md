@@ -36,6 +36,19 @@ O fluxo da aplicação inicia na página de boas vindas Home, permitindo o usuá
 Aplicação disponível em: http://localhost:4200
 
 
+### Pre-Requisitos
+- Node.js 18
+- Angular CLI 17
+
+### Tecnologias
+
+- Angular 17, 
+- Bootstrap 5.3
+- Node.js,
+- JSON Server,
+- Jasmine Karma
+
+
 ## Sobre CORS:
 
 É comum a aplicação Front-end rodar em um determinado domínio URL, e a aplicação Back-end rodar em outro domínio diferente. E no momento de integração das aplicações, pode ocorrer que a requisição do Front-end ao Back-end seja bloqueada pelo navegador, pela política de segurança CORS (Cross-Origin Resource Sharing, ou Compartilhamento de Recursos entre Origens Diferentes). Esse bloqueio CORS ocorre apenas no navegador, pois o navegador faz uma requisição antecipada, conhecida como Preflight, essa mesma requisição Preflight não ocorre no Postman ou outros ambientes, por isso precisa ser bem configurada no Back-end.
@@ -56,3 +69,9 @@ Com o proxy configurado, você faz uma chamada para http://localhost:4200/api/us
 
 O proxy é ideal para desenvolvimento, mas em produção, as chamadas devem ser feitas diretamente para o backend real. Usar um proxy em produção pode adicionar latência e complexidade desnecessária.
 
+
+## Screenshots
+
+Tela de Login:
+
+![Form Login](./src/assets/login-logout-angular-authentication-using-json-server-cida-luna.PNG)
