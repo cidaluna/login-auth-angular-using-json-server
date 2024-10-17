@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
+import { RegisterUserService } from '../../core/services/register-user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,11 +16,11 @@ export class RegisterComponent implements OnInit{
   registerForm!: FormGroup;
   education: string[] = ['Ensino Fundamental', 'Ensino Médio', 'Graduação', 'Pós Graduação', 'Mestrado', 'Doutorado']
 
-  constructor(private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
+  constructor(private _fb: FormBuilder,
+    private _registerUserService: RegisterUserService,
+    private _router: Router
     ){
-    this.registerForm = this.fb.group({
+    this.registerForm = this._fb.group({
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.required],
@@ -41,16 +41,16 @@ export class RegisterComponent implements OnInit{
       return;
     }else{
       const data = this.registerForm.value;
-      this.authService.register(data).subscribe({
-        next: (value) => {
+      this._registerUserService.addUser(data).subscribe({
+        next: (value: any) => {
           console.log("Entrou no comp. register - método submitRegister", value);
           alert("Cadastro realizado com sucesso!"); // melhorar isso, usar o status code
           this.resetFormLogin();
-          this.router.navigate(['/login']);
+          this._router.navigate(['/register']);
         },
-        error: (err) => {
+        error: (err: any) => {
           console.log("Entrou no comp. register - erro no método submitRegister", err);
-          this.router.navigate(['/register']);
+          this._router.navigate(['/register']);
           this.resetFormLogin();
         }
       });
