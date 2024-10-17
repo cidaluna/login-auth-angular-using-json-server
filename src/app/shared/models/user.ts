@@ -6,5 +6,5 @@ export interface IUser{
   password: string,
   education: string,
   gender: string,
-  startDate: string
+  startDate: Date
 }

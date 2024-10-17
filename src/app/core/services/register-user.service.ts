@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IUser } from '../../shared/models/user';
 
@@ -12,6 +12,14 @@ export class RegisterUserService {
   private apiUrlRegister = `${environment.apiUrl}/registers`; // Usar a URL do environment
 
   constructor(private _httpClient: HttpClient) { }
+
+  // Método para verificar se o usuário já existe com email
+  checkUserExists(email: string): Observable<boolean> {
+    return this._httpClient.get<IUser[]>(`${this.apiUrlRegister}?email=${email}`)
+      .pipe(
+        map(users => users.length > 0) // Retorna true se já existe um usuário
+      );
+  }
 
   addUser(data: IUser): Observable<IUser>{
     console.log("Entrou no service - método addUser");

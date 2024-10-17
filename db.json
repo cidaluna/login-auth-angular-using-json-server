@@ -1,34 +1,14 @@
 {
   "registers": [
     {
-      "id": "abc4",
+      "id": "92f2",
       "name": "Cida",
       "lastname": "Luna",
-      "email": "teste@email.com",
-      "password": "teste",
+      "email": "cida@luna.com",
+      "password": "1234!",
       "education": "Pós Graduação",
       "gender": "fem",
-      "startDate": "2024-01-01"
-    },
-    {
-      "id": "4c6d",
-      "name": "Teste",
-      "lastname": "Luna",
-      "email": "teste@email.com",
-      "password": "141414",
-      "education": "Graduação",
-      "gender": "fem",
-      "startDate": "2024-10-17"
-    },
-    {
-      "id": "8c77",
-      "name": "Cida",
-      "lastname": "Luna",
-      "email": "cici@email.com",
-      "password": "1234",
-      "education": "Doutorado",
-      "gender": "fem",
-      "startDate": "2024-10-02"
+      "startDate": "2024-10-18"
     }
   ]
 }
