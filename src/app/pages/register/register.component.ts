@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterUserService } from '../../core/services/register-user.service';
+import { Messages } from '../../shared/messages/messages';
 
 @Component({
   selector: 'app-register',
@@ -25,8 +26,7 @@ export class RegisterComponent implements OnInit{
     'Doutorado'
   ];
 
-  msg_error_password: string = `Senha inválida. A senha deve ter entre 4 e 6 dígitos,
-  incluindo números e um desses caracteres especiais !, #, %, @.`;
+  public messages = Messages; // Torna 'messages' acessível no template
 
   constructor(private _fb: FormBuilder,
     private _registerUserService: RegisterUserService,
@@ -44,17 +44,50 @@ export class RegisterComponent implements OnInit{
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(6),
-        Validators.pattern("^(?=.*[0-9])(?=.*[!#%@]).{4,6}$"),
+        Validators.pattern("^(?=.*[0-9])(?=.*[!@#]).{4,6}$"),
       ]],
       education: ['', Validators.required],
       gender: ['', Validators.required],
-      startDate: ['', Validators.required]
+      startDate: ['', [
+        Validators.required,
+        this.dateInFutureValidator
+      ]]
     });
     console.log("Entrou no comp. register - cadastro construtor campos vazios");
   }
 
   ngOnInit(): void {
 
+  }
+
+  get isGenderRequired() {
+    const genderControl = this.registerForm.get('gender');
+    return genderControl?.errors?.['required'] && genderControl.touched;
+  }
+
+  // Valida se a data está no futuro
+  dateInFutureValidator(control: FormControl) {
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Ignorar a hora na comparação
+
+    if (!control.value) {
+      return null; // Se não houver valor, não retorna erro
+    }
+
+    return selectedDate >= today ? null : { pastDate: true }; // Retorna null se válido, caso contrário retorna erro
+  }
+
+  // Verifica se a data é inválida
+  // Verifica se o campo de data é inválido
+  get startDateErrors() {
+    const startDateControl = this.registerForm.get('startDate');
+    if (startDateControl?.errors?.['required'] && startDateControl.touched) {
+      return { required: true };
+    } else if (startDateControl?.errors?.['pastDate']) {
+      return { pastDate: true };
+    }
+    return null; // Nenhum erro
   }
 
   submitRegister(){
