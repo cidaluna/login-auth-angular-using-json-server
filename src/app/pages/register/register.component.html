@@ -8,18 +8,24 @@
         <div class="row mb-2">
           <div class="col-md-6">
             <label for="name" class="form-label">Nome</label>
-            <input type="text" class="form-control" formControlName="name">
+            <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="name">
             <div class="msg__erro" *ngIf="registerForm.get('name')?.errors?.['required'] &&
                   registerForm.get('name')?.touched">
                   <p>Nome obrigatório</p>
             </div>
+            <div class="msg__erro" *ngIf="registerForm.get('name')?.errors?.['pattern']">
+              <p>Por favor, insira o nome no formato correto.</p>
+            </div>
           </div>
           <div class="col-md-6">
             <label for="lastname" class="form-label">Sobrenome</label>
-            <input type="text" class="form-control" formControlName="lastname">
+            <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="lastname">
             <div class="msg__erro" *ngIf="registerForm.get('lastname')?.errors?.['required'] &&
                   registerForm.get('lastname')?.touched">
                   <p>Sobrenome obrigatório</p>
+            </div>
+            <div class="msg__erro" *ngIf="registerForm.get('lastname')?.errors?.['pattern']">
+              <p>Por favor, insira o sobrenome no formato correto.</p>
             </div>
           </div>
         </div>
@@ -27,15 +33,31 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" formControlName="email">
-            <div class="msg__erro" *ngIf="registerForm.get('email')?.errors?.['required'] &&
+            <input type="email" class="form-control"
+            formControlName="email">
+            <div class="text-danger" *ngIf="registerForm.get('email')?.errors?.['required'] &&
                   registerForm.get('email')?.touched">
                   <p>Email obrigatório</p>
             </div>
+
+            <div class="text-danger" *ngIf="registerForm.get('email')?.errors?.['pattern'] &&
+             registerForm.get('email')?.dirty" >
+              Email inválido. Por favor, insira um email no formato correto.
+            </div>
+
           </div>
           <div class="col-md-6 mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" formControlName="password">
+            <input type="password" class="form-control" maxlength="6" formControlName="password">
+            <div class="text-danger" *ngIf="registerForm.get('password')?.errors?.['required'] &&
+                  registerForm.get('password')?.touched">
+                  <p>Senha obrigatória</p>
+            </div>
+
+            <div class="text-danger" *ngIf="registerForm.get('password')?.errors?.['pattern'] &&
+             registerForm.get('password')?.dirty" >
+             {{ msg_error_password }}
+            </div>
           </div>
         </div>
 
