@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { LoginService } from '../services/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class AuthGuard implements CanActivate {
    */
 
   constructor(
-    private authService: AuthService,  // para gerenciar o estado de autenticação do usuário
-    private router: Router
+    private _loginService: LoginService,  // para gerenciar o estado de autenticação do usuário
+    private _router: Router
   ) {}
 
   /**
@@ -25,10 +25,10 @@ export class AuthGuard implements CanActivate {
    *  mas se o usuário estiver logado o acesso à rota é concedido.
    */
   canActivate(){
-    const isAuthenticated = this.authService.isUserLoggedIn();
+    const isAuthenticated = this._loginService.isUserLoggedIn();
     if (!isAuthenticated) {
       console.log("Guard canActivate - Usuario não autenticado: ",isAuthenticated);
-      this.router.navigate(['/login']);
+      this._router.navigate(['/login']);
       return false;
     }
     console.log("Guard canActivate - Usuario autenticado: ",isAuthenticated);

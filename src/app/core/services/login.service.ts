@@ -6,13 +6,12 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class LoginService {
 
   private userLoggedInStatus = new BehaviorSubject<boolean>(false);
   userLoggedInStatus$ = this.userLoggedInStatus.asObservable();
 
-  private apiUrl = `${environment.apiUrl}/users`; // Usar a URL do environment
-
+  private apiUrl = `${environment.apiUrl}/registers`; // Usar a URL do environment
 
   /**
    * Iniciamos no service as regras de negócio
@@ -60,7 +59,7 @@ export class AuthService {
       return of(new HttpResponse({ status: 200 }));
     } else {
       //return of(new HttpResponse({ status: 401 }));
-      alert("Ops! Algo deu errado!!");
+      alert("Ops! Algo deu errado no login mock!");
       return throwError(() => new Error('Credenciais inválidas'));
     }
   }

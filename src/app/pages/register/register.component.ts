@@ -14,7 +14,16 @@ import { RegisterUserService } from '../../core/services/register-user.service';
 export class RegisterComponent implements OnInit{
 
   registerForm!: FormGroup;
-  education: string[] = ['Ensino Fundamental', 'Ensino Médio', 'Graduação', 'Pós Graduação', 'Mestrado', 'Doutorado']
+  isSubmitting: boolean = false; // Variável para controlar o estado do botão
+
+  education: string[] = [
+    'Ensino Fundamental',
+    'Ensino Médio',
+    'Graduação',
+    'Pós Graduação',
+    'Mestrado',
+    'Doutorado'
+  ];
 
   constructor(private _fb: FormBuilder,
     private _registerUserService: RegisterUserService,
@@ -41,17 +50,20 @@ export class RegisterComponent implements OnInit{
       return;
     }else{
       const data = this.registerForm.value;
+      this.isSubmitting = true;
       this._registerUserService.addUser(data).subscribe({
         next: (value: any) => {
           console.log("Entrou no comp. register - método submitRegister", value);
           alert("Cadastro realizado com sucesso!"); // melhorar isso, usar o status code
           this.resetFormLogin();
-          this._router.navigate(['/register']);
+          this._router.navigate(['/login']);
+          this.isSubmitting = false;
         },
         error: (err: any) => {
           console.log("Entrou no comp. register - erro no método submitRegister", err);
           this._router.navigate(['/register']);
           this.resetFormLogin();
+          this.isSubmitting = false;
         }
       });
     }

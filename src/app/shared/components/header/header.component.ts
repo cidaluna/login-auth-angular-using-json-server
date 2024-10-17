@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -14,40 +14,40 @@ export class HeaderComponent {
   statusUser: boolean = false;
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private _loginService: LoginService,
+    private _router: Router
   ) {}
 
   ngOnInit(){
     // Verifica o estado de login
-    this.statusUser = this.authService.isUserLoggedIn();
+    this.statusUser = this._loginService.isUserLoggedIn();
 
     // Atualiza o estado do botão Logout sempre que houver uma navegação
-    this.router.events.subscribe(event => {
+    this._router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.statusUser = this.authService.isUserLoggedIn();
+        this.statusUser = this._loginService.isUserLoggedIn();
       }
     });
 
     // Acompanha o estado de login
-    this.authService.userLoggedInStatus$.subscribe(
+    this._loginService.userLoggedInStatus$.subscribe(
       (status: boolean) => this.statusUser = status
     );
   }
 
   exit(): void {
     console.log("Entrou no componente App - método exit");
-    this.authService.logout();
+    this._loginService.logout();
     this.statusUser = false;
-    this.router.navigate(['/login']); // ok
+    this._router.navigate(['/login']); // ok
   }
 
   navigateToLogin() {
-    this.router.navigate(['/login']);
+    this._router.navigate(['/login']);
   }
 
   navigateToHome() {
-    this.router.navigate(['/']);
+    this._router.navigate(['/']);
   }
 
 }

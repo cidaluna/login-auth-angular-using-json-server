@@ -70,7 +70,7 @@
             <input class="form-control mb-3" type="date" formControlName="startDate" value="2024-08-29" />
           </div>
           <div class="col-md-6">
-            <button type="submit" class="btn btn-primary form-control" [disabled]="this.registerForm.invalid" (click)="submitRegister()">Cadastrar</button>
+            <button type="submit" class="btn btn-primary form-control" [disabled]="this.registerForm.invalid || isSubmitting" (click)="submitRegister()">Cadastrar</button>
           </div>
         </div>
 
