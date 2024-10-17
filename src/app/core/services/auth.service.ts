@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { IRegister } from '../../shared/models/register';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
   userLoggedInStatus$ = this.userLoggedInStatus.asObservable();
 
   private apiUrl = `${environment.apiUrl}/users`; // Usar a URL do environment
+  private apiUrlRegister = `${environment.apiUrl}/registers`; // Usar a URL do environment
 
   /**
    * Iniciamos no service as regras de negócio
@@ -89,6 +91,13 @@ export class AuthService {
 
   private clearToken(){
     localStorage.removeItem("accessToken");
+  }
+
+  register(data: IRegister): Observable<IRegister>{
+    console.log("Entrou no service - método register");
+    return this.httpClient.post<IRegister>(
+      `${this.apiUrlRegister}`, data
+    );
   }
 
 }

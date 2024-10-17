@@ -3,7 +3,39 @@
     {
       "id": 1,
       "email": "cida@email.com",
-      "password":"1804"
+      "password": "1804"
+    }
+  ],
+  "registers": [
+    {
+      "id": 1,
+      "name": "Cida",
+      "lastname": "Luna",
+      "email": "teste@email.com",
+      "password": "teste",
+      "education": "Pós Graduação",
+      "gender": "fem",
+      "startDate": "2024-01-01"
+    },
+    {
+      "id": "c96f",
+      "name": "teste",
+      "lastname": "teste cadastro",
+      "email": "cida@teste.com",
+      "password": "1212",
+      "education": "Pós Graduação",
+      "gender": "fem",
+      "startDate": "2024-10-09"
+    },
+    {
+      "id": "b2c4",
+      "name": "sdsf",
+      "lastname": "sfsfs",
+      "email": "teste@email.com",
+      "password": "1234ssdsf",
+      "education": "Doutorado",
+      "gender": "outro",
+      "startDate": "2024-10-09"
     }
   ]
 }
