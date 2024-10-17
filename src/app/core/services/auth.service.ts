@@ -1,9 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { IRegister } from '../../shared/models/register';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class AuthService {
   userLoggedInStatus$ = this.userLoggedInStatus.asObservable();
 
   private apiUrl = `${environment.apiUrl}/users`; // Usar a URL do environment
-  private apiUrlRegister = `${environment.apiUrl}/registers`; // Usar a URL do environment
+
 
   /**
    * Iniciamos no service as regras de negócio
@@ -25,16 +23,14 @@ export class AuthService {
   fakeEmail: string = "teste@email.com"; // utilizado no loginMock
   fakePassword: number = 1234;
 
-  constructor(private router: Router,
-              private httpClient: HttpClient
-  ) { }
+  constructor(private _httpClient: HttpClient) { }
 
   /**
    *  Realizando Login com a API do "Backend" JSON-Server rodando
    *  Testado ok, endpoint no environment http://localhost:3000/
    */
   login(email: string, senha: number): Observable<boolean>{
-    return this.httpClient.get<any[]>(
+    return this._httpClient.get<any[]>(
       `${this.apiUrl}?email=${email}&password=${senha}`
     ).pipe(
           map(users => {
@@ -91,13 +87,6 @@ export class AuthService {
 
   private clearToken(){
     localStorage.removeItem("accessToken");
-  }
-
-  register(data: IRegister): Observable<IRegister>{
-    console.log("Entrou no service - método register");
-    return this.httpClient.post<IRegister>(
-      `${this.apiUrlRegister}`, data
-    );
   }
 
 }
