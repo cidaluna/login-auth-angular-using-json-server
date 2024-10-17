@@ -75,3 +75,7 @@ O proxy é ideal para desenvolvimento, mas em produção, as chamadas devem ser 
 Tela de Login:
 
 ![Form Login](./src/assets/login-logout-angular-authentication-using-json-server-cida-luna.PNG)
+
+Tela de Cadastro com algumas validações:
+
+![Form Register with Validators](./src/assets/validators-pattern-on-form-angular-cida-luna.PNG)
