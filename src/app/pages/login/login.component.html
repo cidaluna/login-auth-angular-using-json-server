@@ -23,6 +23,10 @@
                   <p>Senha obrigatória</p>
             </div>
           </div>
+          <div class="mb-3">
+            <input type="checkbox" id="rememberEmail" name="rememberEmail" (change)="onChangeCheckbox($event)" />
+            <label for="rememberEmail"> Lembrar e-mail?</label>
+          </div>
           <div class="mb-3 custom-btn">
             <button type="submit" class="btn btn-primary" [disabled]="this.loginForm.invalid" (click)="submitLogin()">Entrar</button>
             <span>Não possui conta?

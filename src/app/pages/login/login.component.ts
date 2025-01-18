@@ -12,21 +12,54 @@ import { LoginService } from '../../core/services/login.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm!: FormGroup
+  loginForm!: FormGroup;
+  isChecked: boolean = false;
 
   constructor(private _fb: FormBuilder,
               private _loginService: LoginService,
               private _router: Router
   ){
     this.loginForm = this._fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
     console.log("Entrou no comp. login - construtor campos vazios");
   }
 
   ngOnInit(): void {
+    this.loadEmailFromLocalStorage();
+  }
 
+  loadEmailFromLocalStorage(){
+    const savedEmail = localStorage.getItem('email');
+    if(savedEmail){
+      this.loginForm.patchValue({ email: savedEmail });
+      this.isChecked = true;
+    }else{
+      this.isChecked = false;
+    }
+  }
+
+  onChangeCheckbox(event: Event){
+    const checkbox = event.target as HTMLInputElement;
+    this.isChecked = checkbox.checked;
+    console.log(`Checkbox está ${this.isChecked ? 'ativo' : 'desativo'}`);
+
+    if(this.isChecked){
+      if(this.isValidEmail()){
+      localStorage.setItem('email', this.loginForm.get('email')?.value);
+      } else {
+        this.isChecked = false;
+        localStorage.removeItem('email');
+      }
+    } else {
+      localStorage.removeItem('email');
+    }
+  }
+
+  isValidEmail(): boolean{
+    const email = this.loginForm.get('email');
+    return email?.valid || false;
   }
 
   submitLogin(){
