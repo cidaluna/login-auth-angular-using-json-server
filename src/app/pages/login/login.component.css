@@ -15,6 +15,7 @@
   background-color: #fff;
   border-radius: 10px;
   width: 100%;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,7 +24,7 @@
 .card{
   padding: 1rem;
   width: 49%;
-  height: 300px;
+  min-height: 350px;
 }
 
 .custom-card{
@@ -37,6 +38,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+#rememberEmail{
+  margin-right: 8px;
 }
 
 /* Smartphone */

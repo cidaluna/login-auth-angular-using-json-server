@@ -9,7 +9,8 @@
       <form [formGroup]="loginForm">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Digite seu email" formControlName="email" >
+            <input type="email" class="form-control" id="email" aria-describedby="email"
+            placeholder="Digite seu email" formControlName="email" data-test="input-email">
               <div class="msg__erro" *ngIf="loginForm.get('email')?.errors?.['required'] &&
                   loginForm.get('email')?.touched">
                   <p>Email obrigatório</p>
@@ -17,9 +18,10 @@
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" aria-describedby="senha" placeholder="Digite sua senha" formControlName="password" >
+            <input type="password" class="form-control" id="password" aria-describedby="senha"
+            placeholder="Digite sua senha" formControlName="password">
               <div class="msg__erro" *ngIf="loginForm.get('password')?.errors?.['required'] &&
-                  loginForm.get('email')?.touched">
+                  loginForm.get('password')?.touched">
                   <p>Senha obrigatória</p>
             </div>
           </div>
@@ -28,7 +30,8 @@
             <label for="rememberEmail"> Lembrar e-mail?</label>
           </div>
           <div class="mb-3 custom-btn">
-            <button type="submit" class="btn btn-primary" [disabled]="this.loginForm.invalid" (click)="submitLogin()">Entrar</button>
+            <button type="submit" id="buttonLogin" class="btn btn-primary" [disabled]="this.loginForm.invalid"
+            (click)="submitLogin()" data-test="login-button">Entrar</button>
             <span>Não possui conta?
               <button class="btn btn-outline-dark" (click)="navigateToRegister()">Registre-se aqui</button>
             </span>
