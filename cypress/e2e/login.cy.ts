@@ -63,6 +63,7 @@ describe('Login Form', () => {
 
     // Verifica se a mensagem de erro "Email obrigatório" é exibida
     cy.get('.msg__erro p').should('contain', 'Email obrigatório');
+    cy.contains('Email obrigatório').should('be.visible'); // outra forma de verificar
   });
 
   it('Deve exibir "Senha obrigatória" após limpar o conteúdo do campo de senha', () => {
@@ -75,5 +76,6 @@ describe('Login Form', () => {
 
     // Verifica se a mensagem de erro "Senha obrigatória" é exibida
     cy.get('.msg__erro p').should('contain', 'Senha obrigatória');
+    cy.contains('Senha obrigatória').should('be.visible'); // outra forma de verificar
   });
 });
