@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLinkActive, RouterModule } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule, RouterOutlet, RouterLinkActive],
+  imports: [RouterModule, CommonModule, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -14,8 +14,8 @@ export class HeaderComponent {
   statusUser: boolean = false;
 
   constructor(
-    private _loginService: LoginService,
-    private _router: Router
+    private readonly _loginService: LoginService,
+    private readonly _router: Router
   ) {}
 
   ngOnInit(){
