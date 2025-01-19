@@ -14,14 +14,16 @@ import { LoginService } from '../../core/services/login.service';
 export class LoginComponent {
   loginForm!: FormGroup;
   isChecked: boolean = false;
+  isSubmitting: boolean = false; // controlar qtd de clique para envio de formulário
 
-  constructor(private _fb: FormBuilder,
-              private _loginService: LoginService,
-              private _router: Router
+  constructor(private readonly _fb: FormBuilder,
+              private readonly _loginService: LoginService,
+              private readonly _router: Router
   ){
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      checkbox: [''],
     });
     console.log("Entrou no comp. login - construtor campos vazios");
   }
@@ -62,9 +64,12 @@ export class LoginComponent {
     return email?.valid || false;
   }
 
-  submitLogin(){
-    event?.preventDefault();
+  submitLogin(event: Event){
+    if (this.isSubmitting) return; // Evita envio duplo
+    this.isSubmitting = true; // Marca como 'enviando' para bloquear outros cliques no botão
+    event?.preventDefault(); // Impede o comportamento padrão do formulário
     const data = this.loginForm.value;
+
     if(data.email && data.password){
       //this._authService.loginMock(data.email, data.password).subscribe({
       this._loginService.login(data.email, data.password).subscribe({
@@ -76,8 +81,15 @@ export class LoginComponent {
           console.log("Entrou no comp. login - erro no método submitLogin", err);
           this._router.navigate(['/login']);
           this.resetFormLogin();
+        },
+        complete: () => {
+          // Libera o botão após a requisição ser concluída (independente do sucesso ou erro)
+          this.isSubmitting = false;
         }
       });
+    } else {
+      // Caso os dados não sejam válidos, libera o botão para permitir nova tentativa
+      this.isSubmitting = false;
     }
   }
 

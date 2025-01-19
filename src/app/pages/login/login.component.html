@@ -31,9 +31,9 @@
           </div>
           <div class="mb-3 custom-btn">
             <button type="submit" id="buttonLogin" class="btn btn-primary" [disabled]="this.loginForm.invalid"
-            (click)="submitLogin()" data-test="login-button">Entrar</button>
+            (click)="submitLogin($event)" data-test="login-button">Entrar</button>
             <span>Não possui conta?
-              <button class="btn btn-outline-dark" (click)="navigateToRegister()">Registre-se aqui</button>
+              <button class="btn btn-outline-dark" id="btnRegistry" (click)="navigateToRegister()">Registre-se aqui</button>
             </span>
           </div>
         </form>
