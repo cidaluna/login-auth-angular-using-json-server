@@ -61,6 +61,16 @@ Após rodar os comandos anteriores, a aplicação estará disponível em: http:/
   npx cypress run
 ```
 
+8. **Para documentar os testes Cypress, instale o mochawesome**
+```bash
+  npm install --save-dev mochawesome
+```
+
+9. **Rode o Cypress com a documentação mochawesome**
+```bash
+  npx cypress run --reporter mochawesome
+```
+
 
 ### Pre-Requisitos
 - Node.js 18
