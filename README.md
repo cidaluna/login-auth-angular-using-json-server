@@ -33,7 +33,33 @@ O fluxo da aplicação inicia na página de boas vindas Home, permitindo o usuá
 
 6. **Navegue na URL que o comando anterior apresentou**
 
-Aplicação disponível em: http://localhost:4200
+Após rodar os comandos anteriores, a aplicação estará disponível em: http://localhost:4200
+
+
+## Como rodar os testes Cypress/e2e:
+
+1. **Navegue até o diretório principal**
+```bash
+   cd login-auth-angular-using-json-server
+```
+
+2. **No diretório principal, execute o comando**
+```bash
+  npx cypress open
+```
+
+3. **Será aberta uma tela, clique na opção E2E Testing**
+
+4. **Clique no navegador de sua preferência e clique em Start**
+
+5. **Clique em login.cy.js**
+
+6. **Acompanhe o resultado dos testes Cypress na tela**
+
+7. **Caso queira, rode o Cypress apenas no terminal**
+```bash
+  npx cypress run
+```
 
 
 ### Pre-Requisitos
@@ -47,6 +73,7 @@ Aplicação disponível em: http://localhost:4200
 - Node.js,
 - JSON Server,
 - Jasmine Karma
+- Cypress E2E
 
 
 ## Sobre CORS:
@@ -79,3 +106,7 @@ Tela de Login:
 Tela de Cadastro com algumas validações:
 
 ![Form Register with Validators](./src/assets/validators-pattern-on-form-angular-cida-luna.PNG)
+
+Tela de Testes End-2-End com Cypress no Login
+
+![Cypress no formulário de login](./src/assets/login-angular-frontend-cida-luna-com-cypress-e2e-sao-carlos-sp.png)
