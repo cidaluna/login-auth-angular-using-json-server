@@ -91,9 +91,7 @@ describe('Login Form', () => {
   });
 
   it('Deve navegar para a página books se usuário e senha estiverem corretos', () => {
-    cy.get('#email').type('cida@luna.com');
-    cy.get('#password').type('1234!');
-    cy.get('#buttonLogin').click();
+    cy.login('cida@luna.com', '1234!'); // comando personalizado no support > commands.js
     cy.url().should('include', '/books'); // Confirma que a navegação ocorreu
   });
 
